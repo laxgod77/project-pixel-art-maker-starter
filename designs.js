@@ -5,6 +5,7 @@
 const height = document.getElementById("inputHeight")
 const width = document.getElementById("inputWidth")
 const table = document.getElementById("pixelCanvas")
+const colorPicker = document.getElementById("colorPicker")
 
 function makeGrid(e) {
   e.preventDefault()
@@ -19,7 +20,7 @@ function makeGrid(e) {
     table.appendChild(column)
     }
   }
-  
+  // console.log(colorPicker.value)
 }
 
 function deleteGrid() {
@@ -30,4 +31,10 @@ function deleteGrid() {
 
 const sizeSubmit = document.getElementById("sizePicker")
 sizeSubmit.onsubmit = makeGrid
-console.log(sizeSubmit)
+
+function changeColor(e) {
+  if (e.target.nodeName == "TR" || e.target.nodeName == "TD") {
+    e.target.style.backgroundColor = colorPicker.value
+  }
+}
+table.addEventListener('click', changeColor)
